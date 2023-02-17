@@ -136,7 +136,7 @@ A posted message is in the queue.
 
 
 
-This value is cleared when you call <a href="/previous-versions/windows/desktop/fax/-mfax-faxaccountincomingarchive-getmessage-vb">GetMessage</a> or <a href="/windows/desktop/api/winuser/nf-winuser-peekmessagea">PeekMessage</a> without filtering messages.
+This value is cleared when you call <a href="/windows/desktop/api/winuser/nf-winuser-getmessage">GetMessage</a> or <a href="/windows/desktop/api/winuser/nf-winuser-peekmessagea">PeekMessage</a> without filtering messages.
 
 </td>
 </tr>
@@ -239,7 +239,7 @@ A posted message is in the queue.
 
 
 
-This value is cleared when you call <a href="/previous-versions/windows/desktop/fax/-mfax-faxaccountincomingarchive-getmessage-vb">GetMessage</a> or <a href="/windows/desktop/api/winuser/nf-winuser-peekmessagea">PeekMessage</a>, whether or not you are filtering messages.
+This value is cleared when you call <a href="/windows/desktop/api/winuser/nf-winuser-getmessage">GetMessage</a> or <a href="/windows/desktop/api/winuser/nf-winuser-peekmessagea">PeekMessage</a>, whether or not you are filtering messages.
 
 </td>
 </tr>
@@ -366,7 +366,7 @@ If the <b>MWMO_WAITALL</b> flag is used, a return value within the specified ran
 <td width="60%">
 New input of the type specified in the <i>dwWakeMask</i> parameter is available in the thread's input queue. Functions such as 
 <a href="/windows/desktop/api/winuser/nf-winuser-peekmessagea">PeekMessage</a>, 
-<a href="/previous-versions/windows/desktop/fax/-mfax-faxaccountincomingarchive-getmessage-vb">GetMessage</a>, 
+<a href="/windows/desktop/api/winuser/nf-winuser-getmessage">GetMessage</a>, 
 <a href="/windows/desktop/direct3d10/id3dx10threadpump-getqueuestatus">GetQueueStatus</a>, and 
 <a href="/windows/desktop/api/winuser/nf-winuser-waitmessage">WaitMessage</a> mark messages in the queue as old messages. Therefore, after you call one of these functions, a subsequent call to 
 <a href="/windows/desktop/api/winuser/nf-winuser-msgwaitformultipleobjectsex">MsgWaitForMultipleObjectsEx</a> will not return until new input of the specified type arrives. 
@@ -375,7 +375,7 @@ New input of the type specified in the <i>dwWakeMask</i> parameter is available 
 
 
 This value is also returned upon the occurrence of a system event that requires the thread's action, such as foreground activation. Therefore, 
-<a href="/windows/desktop/api/winuser/nf-winuser-msgwaitformultipleobjectsex">MsgWaitForMultipleObjectsEx</a> can return even though no appropriate input is available and even if <i>dwWakeMask</i> is set to 0. If this occurs, call <a href="/previous-versions/windows/desktop/fax/-mfax-faxaccountincomingarchive-getmessage-vb">GetMessage</a> or <a href="/windows/desktop/api/winuser/nf-winuser-peekmessagea">PeekMessage</a> to process the system event before trying the call to 
+<a href="/windows/desktop/api/winuser/nf-winuser-msgwaitformultipleobjectsex">MsgWaitForMultipleObjectsEx</a> can return even though no appropriate input is available and even if <i>dwWakeMask</i> is set to 0. If this occurs, call <a href="/windows/desktop/api/winuser/nf-winuser-getmessage">GetMessage</a> or <a href="/windows/desktop/api/winuser/nf-winuser-peekmessagea">PeekMessage</a> to process the system event before trying the call to 
 <b>MsgWaitForMultipleObjectsEx</b> again.
 
 </td>
@@ -443,7 +443,7 @@ When <i>dwFlags</i> is zero, this function checks the handles in the array in or
 
 <b>MsgWaitForMultipleObjectsEx</b> does not return if there is unread input of the specified type in the message queue after the thread has called a function to check the queue, unless you use the <b>MWMO_INPUTAVAILABLE</b> flag. This is because functions such as 
 <a href="/windows/desktop/api/winuser/nf-winuser-peekmessagea">PeekMessage</a>, 
-<a href="/previous-versions/windows/desktop/fax/-mfax-faxaccountincomingarchive-getmessage-vb">GetMessage</a>, 
+<a href="/windows/desktop/api/winuser/nf-winuser-getmessage">GetMessage</a>, 
 <a href="/windows/desktop/direct3d10/id3dx10threadpump-getqueuestatus">GetQueueStatus</a>, and 
 <a href="/windows/desktop/api/winuser/nf-winuser-waitmessage">WaitMessage</a> check the queue and then change the state information for the queue so that the input is no longer considered new. A subsequent call to 
 <b>MsgWaitForMultipleObjectsEx</b> will not return until new input of the specified type arrives, unless you use the <b>MWMO_INPUTAVAILABLE</b> flag. If this flag is not used, the existing unread input (received prior to the last time the thread checked the queue) is ignored.
@@ -464,7 +464,7 @@ The
 <li>Thread</li>
 <li>Waitable timer</li>
 </ul>
-The <b>QS_ALLPOSTMESSAGE</b> and <b>QS_POSTMESSAGE</b> flags differ in when they are cleared. <b>QS_POSTMESSAGE</b> is cleared when you call <a href="/previous-versions/windows/desktop/fax/-mfax-faxaccountincomingarchive-getmessage-vb">GetMessage</a> or <a href="/windows/desktop/api/winuser/nf-winuser-peekmessagea">PeekMessage</a>, whether or not you are filtering messages. <b>QS_ALLPOSTMESSAGE</b> is cleared when you call <b>GetMessage</b> or <b>PeekMessage</b> without filtering messages (<i>wMsgFilterMin</i> and <i>wMsgFilterMax</i> are 0). This can be useful when you call <b>PeekMessage</b> multiple times to get messages in different ranges.
+The <b>QS_ALLPOSTMESSAGE</b> and <b>QS_POSTMESSAGE</b> flags differ in when they are cleared. <b>QS_POSTMESSAGE</b> is cleared when you call <a href="/windows/desktop/api/winuser/nf-winuser-getmessage">GetMessage</a> or <a href="/windows/desktop/api/winuser/nf-winuser-peekmessagea">PeekMessage</a>, whether or not you are filtering messages. <b>QS_ALLPOSTMESSAGE</b> is cleared when you call <b>GetMessage</b> or <b>PeekMessage</b> without filtering messages (<i>wMsgFilterMin</i> and <i>wMsgFilterMax</i> are 0). This can be useful when you call <b>PeekMessage</b> multiple times to get messages in different ranges.
 
 ## -see-also
 
